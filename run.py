@@ -110,23 +110,9 @@ def main(argv):
 
         loss_fn = torch.nn.CrossEntropyLoss()
 
-        n_samples = cj.parameters.n_epochs * len(filepaths)
-        """
-              "data_dir": "/root/images",
-            "split": "",
-            "batch_size": 8,
-            "base_size": 400,
-            "crop_size": 380,
-            "augment": true,
-            "shuffle": true,
-            "scale": true,
-            "flip": true,
-            "rotate": true,
-            "blur": false,
-            "num_workers": 1
-        """
         loader = CytomineDataLoader(data_path, batch_size, "", crop_size=384, base_size=400, augment=True,
-                                    shuffle=True, scale=True, flip=True, blur=True, num_workers=cj.parameters.n_jobs)
+                                    shuffle=False, scale=True, flip=True, blur=True, num_workers=cj.parameters.n_jobs,
+                                    n_samples=cj.parameters.n_epochs * len(filepaths))
 
         for i, (x, y_true) in cj.monitor(enumerate(loader), period=1, prefix="training"):
             y = net.forward(x)

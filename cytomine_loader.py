@@ -3,6 +3,7 @@ import os
 import numpy as np
 from PIL.Image import Image
 import PIL
+from torch.utils.data import RandomSampler
 
 from base_dataloader import BaseDataLoader
 from base_dataset import BaseDataSet
@@ -33,7 +34,7 @@ class CytomineDataLoader(BaseDataLoader):
     def __init__(self, data_dir, batch_size, split, crop_size=None,
                  base_size=None, scale=True, num_workers=1,
                  val=False, shuffle=False, flip=False, rotate=False,
-                 blur=False, augment=False, val_split=None, return_id=False):
+                 blur=False, augment=False, val_split=None, return_id=False, n_samples=None):
 
         self.MEAN = [0.45734706, 0.43338275, 0.40058118]
         self.STD = [0.23965294, 0.23532275, 0.2398498]
@@ -55,6 +56,8 @@ class CytomineDataLoader(BaseDataLoader):
         }
 
         self.dataset = CytomineDataset(**kwargs)
+        if n_samples is not None:
+            sampler = RandomSampler(self.dataset, replacement=True, num_samples=n_samples)
         super(CytomineDataLoader, self).__init__(self.dataset, batch_size, shuffle,
-                                                 num_workers, val_split)
+                                                 num_workers, sampler=sampler, val_split=val_split)
 

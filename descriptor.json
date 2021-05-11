@@ -108,9 +108,9 @@
       "command-line-flag": "--@id"
     },
     {
-      "default-value": 1,
+      "default-value": 0,
       "name": "Number of jobs",
-      "description": "Number of jobs.",
+      "description": "Number of jobs (0 for using main process).",
       "set-by-server": true,
       "value-key": "@ID",
       "optional": true,
