@@ -100,7 +100,7 @@
       "description": "The annotation which are associated with one of these terms are considered to be part of the ground truth foreground.",
       "set-by-server": false,
       "value-key": "@ID",
-      "optional": true,
+      "optional": false,
       "id": "cytomine_foreground_terms",
       "type": "ListDomain",
       "uri": "/api/project/$currentProject$/term.json",
