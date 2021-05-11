@@ -87,7 +87,7 @@ def main(argv):
 
         images = ImageInstanceCollection().fetch_with_filter("project", cj.parameters.cytomine_id_project)
         filepaths = list()
-        for img in cj.monitor(images, period=1, prefix="load images", start=5, end=25):
+        for img in cj.monitor(images, period=0.1, prefix="load images", start=5, end=35):
             filepath = os.path.join(images_dir, img.originalFilename)
             filepaths.append(filepath)
             img.download(filepath, override=False)
@@ -114,7 +114,7 @@ def main(argv):
                                     shuffle=False, scale=True, flip=True, blur=True, num_workers=cj.parameters.n_jobs,
                                     n_samples=cj.parameters.n_epochs * len(filepaths))
 
-        for i, (x, y_true) in cj.monitor(enumerate(loader), period=1, prefix="training", start=25, end=95):
+        for i, (x, y_true) in cj.monitor(enumerate(loader), period=1, prefix="training", start=35, end=95):
             y = net.forward(x)
             optimizer.zero_grad()
             loss = loss_fn(y, y_true)
