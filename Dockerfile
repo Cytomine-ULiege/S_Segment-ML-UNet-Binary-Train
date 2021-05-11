@@ -11,7 +11,7 @@ RUN git clone https://github.com/cytomine-uliege/Cytomine-python-client.git && \
 # --------------------------------------------------------------------------------------------
 # Install pytorch
 RUN pip install torch==1.8.1+cpu torchvision==0.9.1+cpu torchaudio===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
-RUN pip install scikit-learn==0.24.2 shapely==1.7.1 pillow==8.1.2 opencv-python==4.5.2.52 sldc==1.3.0 tqdm==4.32.2 rasterio
+RUN pip install scikit-learn==0.24.2 shapely==1.7.1 pillow==8.1.2 opencv-python==4.5.2.52 sldc==1.3.0 tqdm==4.32.2 rasterio==1.2.3
 
 
 # -------------------------------------------------------------------------------------------
