@@ -24,5 +24,4 @@ ADD unet_model.py /app/unet_model.py
 ADD unet_parts.py /app/unet_parts.py
 ADD run.py /app/run.py
 
-WORKDIR /app
-ENTRYPOINT ["python", "run.py"]
+ENTRYPOINT ["python", "/app/run.py"]
